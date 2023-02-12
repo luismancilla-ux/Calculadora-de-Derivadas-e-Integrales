@@ -1,0 +1,86 @@
+
+import sympy
+from sympy import *
+from sympy.parsing.sympy_parser import parse_expr
+from tkinter import*
+import tkinter
+import tkinter as tk
+
+
+
+
+from tkinter import *
+from tkinter import Tk,Label,Button,Entry
+
+
+def derivada():#LLamamos al boton de derivar
+    try:
+        x = symbols('x')
+
+        fun_escrita = funcion.get()
+        f = parse_expr(fun_escrita)
+        derivada = diff(f, x)
+        etiqueta.configure(text=derivada)
+
+    except:
+        etiqueta.configure(text="FUNCION INCORRECTA")
+
+def integral():
+    try:
+        x = symbols('x')
+        fun_escrita2 = funcion.get()
+        g = parse_expr(fun_escrita2)
+        integral = integrate(g, x)
+        etiqueta.configure(text=integral)
+    except:
+        etiqueta.configure(text="Funcion incorrecta")
+
+ven = Tk()
+ven.title=("Derivadas simples")
+ven.geometry('460x200')
+ven.configure(background='red')
+
+img =tkinter.PhotoImage(file="codeGrande.png")
+lbl_img=tk.Label(ven, image=img)
+lbl_img.place(x=0, y=0, relwidth=1.0,relheight=1.0)
+
+
+
+
+anuncio = Label(ven, text="Ingresa la funcion f(x):", font=("Apple Chancery", 15), fg="red")
+anuncio.pack()
+
+funcion = Entry(ven, font=("Arial", 15),fg="lawn green")
+funcion.pack()
+
+etiqueta = Label(ven, text="Resultado", font=("Apple Chancery", 15), fg="tomato")
+etiqueta.pack()
+
+
+
+
+boton1 = Button(ven, text="Derivar Funcion", font=("Times New Rotman", 15), fg="saddle brown", command=derivada)
+boton1.pack()
+boton1.place(x=160,y=10,width=300,height=100)
+
+
+
+boton2 = Button(ven, text="Integrar funcion", font=("Times New Roman", 15),fg="saddle brown", command=integral)
+boton2.pack()
+boton2.place(x=980,y=10,width=300,height=100)
+
+
+
+def _quit():
+    ven.quit()
+
+    ven.destroy()
+
+
+
+button3 = Button(master=ven, text="SALIR", font=("Times New Roman", 15),fg="blue", command=_quit)
+button3.pack()
+button3.place(x=545,y=200,width=350,height=50)
+ven.mainloop()
+
+
